@@ -1,0 +1,17 @@
+#!/bin/bash
+
+file=~/random_file.txt
+
+rm -f $file
+
+if [ ! -e $file ]; then
+	touch $file
+fi
+
+size=$(stat $file | grep -i size | awk '{print $2}')	
+
+until [ $(($size/1000)) -gt 100 ]; do
+	head -c 8KB /dev/urandom >> $file	
+	size=$(stat $file | grep -i size | awk '{print $2}')	
+	echo "File size: $(($size/1000)) KB"
+done

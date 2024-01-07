@@ -1,0 +1,15 @@
+#!/bin/bash
+
+regex="^[-]?[0-9]+$"
+sum=0
+for item in $@; do
+	if [[ ! $item =~ $regex ]]; then
+		echo "Argument \"$item\" is not a number"	
+		exit 1
+	fi
+	sum=$(($sum + $item))
+done
+
+echo "Sum: $sum"
+echo "Num: $#"
+echo "Avg: $(($sum/$#))"

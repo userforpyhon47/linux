@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo '1. Script running is $0: ' "$0"
+echo '2. Number of arguments passed to the script $#: ' "$#"
+echo '3. Second argument passed to the script $2: ' "$2"
+echo '4. Procces ID of the current script $$: ' "$$"
+ps -ef | grep $$
+echo "a" "bb" "ccc"
+echo '5. Last argument in previous command $_: ' "$_"
+echo '6. Exit code of last command $?: ' "$?" 
+cat nonfile
+echo '7. Exit code of last command $?: ' "$?" 
+ping google.com &> /dev/null &
+echo '8. Process number of last command in background $!: ' "$!"
+ps -ef | grep "$!|$$"

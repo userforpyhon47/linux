@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Creating folder"
+mkdir junior_test
+ls -l
+echo "Creating files"
+touch junior_test/{junior,test}.py 

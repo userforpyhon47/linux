@@ -1,0 +1,24 @@
+#!/bin/bash
+
+file=~/.mpids
+case $1 in
+	start) 
+		echo "Service started with PID $$" 
+		if [ ! -s $file ]; then
+			touch $file
+		fi		
+		echo $$ | tee -a $file 
+		sleep 1000;;
+	stop)
+		for pid in $(cat $file); do 
+			echo "killing PID $pid"
+			pkill -P $pid -9
+			if [ $? -eq 0 ] ; then
+				sed -i "/$pid/d" $file
+			else
+				echo "Failed to kill $pid"	
+			fi	
+		done;;
+	restart) ./script7.sh stop && ./script7.sh start ;;
+	*) echo "usage: my_service.sh [start|strop|restart]";;
+esac

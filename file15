@@ -1,0 +1,47 @@
+
+#!/bin/bash
+
+export TEST=123
+printenv | grep -i test
+
+if [ $1 = $2 ]; then
+	echo "Exit operation code $?"	
+ 	echo "Argument 1 and 2 are the same $1 = $2"
+else
+	echo "Exit operation code $?"	
+	echo "Argument 1 and 2 are not the same $1 =! $2"
+fi 
+
+if [[ ${#1} > ${#2} ]]; then
+	echo "Exit operation code $?"	
+ 	echo "Argument 1 is greater than 2  $1 > $2"
+else
+	echo "Exit operation code $?"	
+ 	echo "Argument 1 is lower than 2  $1 < $2"
+fi
+
+
+if [ -n $TEST ]; then
+	echo "Exit operation code $?"	
+	echo "Enviroment variable \$TEST exist:" $TEST 
+else
+	echo "Exit operation code $?"	
+	echo "Enviroment variable \$TEST does not exist:" $TEST 
+
+fi
+
+if [ $3 -ne $4 ]; then
+	echo "Exit operation code $?"	
+ 	echo "Argument 3 and 4 are not equal $3 -ne $4"
+else
+	echo "Exit operation code $?"	
+ 	echo "Argument 3 and 4 are equal $3 -eq $4"
+fi
+
+if [ $3 -gt $4 ]; then
+	echo "Exit operation code $?"	
+ 	echo "Argument 3 is greter than 4 $3 -gt $4"
+else
+	echo "Exit operation code $?"	
+ 	echo "Argument 3 is lower than 4 $3 -gt $4"
+fi

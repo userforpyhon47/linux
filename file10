@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "$@"
+
+$@ && break | echo $?
+
+option="empty"
+while [ ! $option = "exit" ]; do
+	read option
+	case $option in
+		ls) ls . ;;
+		pwd) pwd;;
+		hi) echo "Hi $(echo ~)";;
+		*) ;;
+	esac
+done

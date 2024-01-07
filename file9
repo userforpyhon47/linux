@@ -1,0 +1,20 @@
+#!/bin/bash
+
+NAME="junior_test"
+
+if [ -e $NAME ]; then
+	rm -rf $NAME 
+	echo "deleting folder $NAME"
+fi
+
+if [ ! -e vars ]; then
+	echo "File does not exist"
+	echo 'FILE="new_file"' | tee vars
+fi
+
+echo "Creating folder $NAME"
+source vars
+mkdir $NAME 
+ls -l
+echo "Creating files $FILE"
+touch $NAME/$FILE 

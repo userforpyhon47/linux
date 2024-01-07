@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+function retry ()
+{
+	local FUNCTION="$@"
+	local SLEEP=1
+	local MAX=5
+	local COUNT=0
+
+	while true; do
+		$FUNCTION && break
+		if [ $COUNT -lt $MAX ]; then
+		
+			((COUNT++))
+			echo "Server response failed... $COUNT/$MAX"
+			sleep $SLEEP
+			continue
+		fi
+		echo "Connection to host $2 failed"
+		return 1
+	done
+}
+
+
+function healthcheck () 
+{
+	curl -sLI $1 | grep 200 &> /dev/null
+	[ $? -ne 0 ] && return 1
+	echo "Succes response code 200 from $1"
+}
+
+
+[ $# -ne 1 ] && echo "Bad number of arguments, need 1 but received $#" && exit 1
+retry healthcheck $1

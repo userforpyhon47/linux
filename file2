@@ -1,0 +1,8 @@
+[Unit]
+Description=test unit
+
+[Service]
+Type=simple
+
+ExecStart=/home/centos/script.sh
+ExecStop=/bin/kill -15 $MAINPID
